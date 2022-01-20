@@ -5,8 +5,6 @@
 //  Created by Loyi Hsu on 2022/1/21.
 //
 
-import Foundation
-
 protocol Knowledge {
     func enforce(on original: Set<String>) -> Set<String>
 }

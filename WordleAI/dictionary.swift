@@ -5,8 +5,6 @@
 //  Created by Loyi Hsu on 2022/1/20.
 //
 
-import Foundation
-
 let words = """
 aahed
 aalii
