@@ -21959,5 +21959,4 @@ zurek
 zwart
 zweig
 zwick
-Program ended with exit code: 0
 """
