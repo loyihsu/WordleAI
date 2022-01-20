@@ -5,21 +5,28 @@
 //  Created by Loyi Hsu on 2022/1/21.
 //
 
-protocol Knowledge {
+public protocol Knowledge {
     func enforce(on original: Set<String>) -> Set<String>
 }
 
-struct NoCharacter: Knowledge {
+public struct NoCharacter: Knowledge {
     var character: Character
-    func enforce(on original: Set<String>) -> Set<String> {
+    public init(character: Character) {
+        self.character = character
+    }
+    public func enforce(on original: Set<String>) -> Set<String> {
         return original.filter({ !$0.contains(character) })
     }
 }
 
-struct NotAtPosition: Knowledge {
+public struct NotAtPosition: Knowledge {
     var character: Character
     var position: Int
-    func enforce(on original: Set<String>) -> Set<String> {
+    public init(character: Character, position: Int) {
+        self.character = character
+        self.position = position
+    }
+    public func enforce(on original: Set<String>) -> Set<String> {
         guard (0..<5).contains(position) else {
             fatalError("Knowledge cannot be fullfilled.")
         }
@@ -30,10 +37,14 @@ struct NotAtPosition: Knowledge {
     }
 }
 
-struct CharAtPosition: Knowledge {
+public struct CharAtPosition: Knowledge {
     var character: Character
     var position: Int
-    func enforce(on original: Set<String>) -> Set<String> {
+    public init(character: Character, position: Int) {
+        self.character = character
+        self.position = position
+    }
+    public func enforce(on original: Set<String>) -> Set<String> {
         guard (0..<5).contains(position) else {
             fatalError("Knowledge cannot be fullfilled.")
         }

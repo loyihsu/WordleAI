@@ -5,7 +5,7 @@
 //  Created by Loyi Hsu on 2022/1/20.
 //
 
-let words = """
+public let words = """
 aahed
 aalii
 aalst

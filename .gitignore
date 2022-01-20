@@ -1,2 +1,8 @@
-WordleAI.xcodeproj/project.xcworkspace/xcshareddata
-*.xcworkspace
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
+DerivedData/
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.swiftpm
