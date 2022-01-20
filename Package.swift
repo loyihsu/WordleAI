@@ -21,7 +21,7 @@ let package = Package(
         .target(
             name: "WordleAI",
             dependencies: []),
-        .target(name: "Runner",
+        .executableTarget(name: "Runner",
                dependencies: ["WordleAI"]),
         .testTarget(
             name: "WordleAITests",
