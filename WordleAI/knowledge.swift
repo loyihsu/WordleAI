@@ -36,6 +36,9 @@ struct CharAtPosition: Knowledge {
     var character: Character
     var position: Int
     func enforce(on original: Set<String>) -> Set<String> {
+        guard (0..<5).contains(position) else {
+            fatalError("Knowledge cannot be fullfilled.")
+        }
         return original.filter({
             let position = $0.index($0.startIndex, offsetBy: position)
             return $0[position] == character
