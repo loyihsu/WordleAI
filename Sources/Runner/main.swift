@@ -10,7 +10,7 @@ import Foundation
 
 let knowledge: [Knowledge] = [ ]
 
-if let found = find(with: knowledge) {
+if let found = findOne(with: knowledge) {
     print(found)
 } else {
     print("No choice to be made.")
