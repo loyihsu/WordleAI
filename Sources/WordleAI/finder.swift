@@ -1,6 +1,6 @@
 //
-//  toolkit.swift
-//  
+//  finder.swift
+//  WordleAI
 //
 //  Created by Loyi Hsu on 2022/1/21.
 //
