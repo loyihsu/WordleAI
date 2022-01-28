@@ -10,11 +10,13 @@ final class WordleAITests: XCTestCase {
             NotAtPosition(character: "x", position: 0),
             NotAtPosition(character: "y", position: 1),
         ]
-        let found = try XCTUnwrap(findOne(with: conditions))
+        let finder = Finder()
+        let found = try XCTUnwrap(finder.findOne(with: conditions))
         XCTAssertEqual(found, "proxy")
     }
     func testGenerateAGoodItemWithoutKnowledge() throws {
-        let found = try XCTUnwrap(findOne())
+        let finder = Finder()
+        let found = try XCTUnwrap(finder.findOne())
         XCTAssertEqual(Set(found).count, 5)
     }
     func testContraditionRemoval() throws {

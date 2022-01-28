@@ -8,9 +8,11 @@
 import WordleAI
 import Foundation
 
+let finder = Finder()
+
 let knowledge: [Knowledge] = [ ]
 
-if let found = findOne(with: knowledge) {
+if let found = finder.findOne(with: knowledge) {
     print(found)
 } else {
     print("No choice to be made.")
