@@ -1,9 +1,7 @@
-//
-//  optimiser.swift
-//  WordleAI
-//
-//  Created by Yu-Sung Loyi Hsu on 2022/1/28.
-//
+/**
+ # Runner (WordleAI)
+ Created by Yu-Sung Loyi Hsu on 2022/1/28
+ */
 
 func conflictDispatcher(first: (Knowledge, Int), second: (Knowledge, Int), toRemove: inout [Int]) {
     if let firstItem = first.0 as? NoCharacter {

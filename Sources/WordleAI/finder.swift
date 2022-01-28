@@ -1,10 +1,7 @@
-//
-//  finder.swift
-//  WordleAI
-//
-//  Created by Loyi Hsu on 2022/1/21.
-//
-
+/**
+ # WordleAI
+ Created by Yu-Sung Loyi Hsu on 2022/1/21
+ */
 import Foundation
 
 public class Finder {

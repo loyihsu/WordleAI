@@ -1,9 +1,7 @@
-//
-//  dictionary.swift
-//  WordleAI
-//
-//  Created by Loyi Hsu on 2022/1/20.
-//
+/**
+ # WordleAI
+ Created by Yu-Sung Loyi Hsu on 2022/1/20
+ */
 
 public let words = """
 aahed

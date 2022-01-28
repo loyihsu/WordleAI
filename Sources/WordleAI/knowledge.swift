@@ -1,9 +1,7 @@
-//
-//  knowledge.swift
-//  WordleAI
-//
-//  Created by Loyi Hsu on 2022/1/21.
-//
+/**
+ # Runner (WordleAI)
+ Created by Yu-Sung Loyi Hsu on 2022/1/21
+ */
 
 public protocol Knowledge {
     var type: KnowledgeType { get }
@@ -24,6 +22,7 @@ public struct NoCharacter: Knowledge, Equatable {
     public var type: KnowledgeType { return .noCharacter }
     var character: Character
     public init(character: Character) {
+        let character = character.isUppercase ? Character(character.lowercased()) : character
         self.character = character
     }
     public func enforce(on original: Set<String>) -> Set<String> {
@@ -41,6 +40,7 @@ public struct NotAtPosition: Knowledge, Equatable {
     var character: Character
     var position: Int
     public init(character: Character, position: Int) {
+        let character = character.isUppercase ? Character(character.lowercased()) : character
         self.character = character
         self.position = position
     }
@@ -64,6 +64,7 @@ public struct CharAtPosition: Knowledge, Equatable {
     var character: Character
     var position: Int
     public init(character: Character, position: Int) {
+        let character = character.isUppercase ? Character(character.lowercased()) : character
         self.character = character
         self.position = position
     }
@@ -108,13 +109,9 @@ extension Array where Element == Knowledge {
 
         toRemove.sort(by: >)
 
-        print(toRemove)
-
         for idx in toRemove {
             filtered.remove(at: idx)
         }
-
-        print(filtered)
 
         return filtered
     }
