@@ -12,6 +12,7 @@ public func findOne(with knowledge: [Knowledge] = []) -> String? {
 }
 
 public func findAll(with knowledge: [Knowledge] = []) -> Set<String> {
+    let knowledge = knowledge.optimised()
     if knowledge.isEmpty {
         // All the words that have 5 distinct characters
         return Set(words.components(separatedBy: .newlines).filter({ Set($0).count == 5 }))

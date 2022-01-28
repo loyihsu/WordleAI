@@ -6,10 +6,22 @@
 //
 
 public protocol Knowledge {
+    var type: KnowledgeType { get }
     func enforce(on original: Set<String>) -> Set<String>
+    func equals(another: Knowledge) -> Bool
 }
 
-public struct NoCharacter: Knowledge {
+public enum KnowledgeType {
+    case noCharacter, notAtPosition, charAtPosition
+}
+
+public struct NoCharacter: Knowledge, Equatable {
+    public func equals(another: Knowledge) -> Bool {
+        guard self.type == another.type else { return false}
+        return self == another as! Self
+    }
+
+    public var type: KnowledgeType { return .noCharacter }
     var character: Character
     public init(character: Character) {
         self.character = character
@@ -19,7 +31,13 @@ public struct NoCharacter: Knowledge {
     }
 }
 
-public struct NotAtPosition: Knowledge {
+public struct NotAtPosition: Knowledge, Equatable {
+    public func equals(another: Knowledge) -> Bool {
+        guard self.type == another.type else { return false}
+        return self == another as! Self
+    }
+
+    public var type: KnowledgeType { return .notAtPosition }
     var character: Character
     var position: Int
     public init(character: Character, position: Int) {
@@ -37,7 +55,12 @@ public struct NotAtPosition: Knowledge {
     }
 }
 
-public struct CharAtPosition: Knowledge {
+public struct CharAtPosition: Knowledge, Equatable {
+    public func equals(another: Knowledge) -> Bool {
+        guard self.type == another.type else { return false}
+        return self == another as! Self
+    }
+    public var type: KnowledgeType { return .charAtPosition }
     var character: Character
     var position: Int
     public init(character: Character, position: Int) {
@@ -52,5 +75,47 @@ public struct CharAtPosition: Knowledge {
             let position = $0.index($0.startIndex, offsetBy: position)
             return $0[position] == character
         })
+    }
+}
+
+extension Array where Element == Knowledge {
+    func optimised() -> [Element] {
+        // Remove duplicates.
+        var filtered = [Element]()
+        for element in self where !filtered.contains(where: { knowledge in
+            if knowledge.type == element.type {
+                switch knowledge.type {
+                case .noCharacter: return knowledge as! NoCharacter == element as! NoCharacter
+                case .notAtPosition: return knowledge as! NotAtPosition == element as! NotAtPosition
+                case .charAtPosition: return knowledge as! CharAtPosition == element as! CharAtPosition
+                }
+            }
+            return false
+        }) {
+            filtered.append(element)
+        }
+
+        var toRemove = [Int]()
+
+        // Remove conflicts
+        for first in filtered.indices {
+            for second in filtered.indices where first != second {
+                conflictDispatcher(first: (filtered[first], first),
+                               second: (filtered[second], second),
+                               toRemove: &toRemove)
+            }
+        }
+
+        toRemove.sort(by: >)
+
+        print(toRemove)
+
+        for idx in toRemove {
+            filtered.remove(at: idx)
+        }
+
+        print(filtered)
+
+        return filtered
     }
 }
