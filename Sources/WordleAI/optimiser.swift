@@ -1,6 +1,6 @@
 //
 //  optimiser.swift
-//  
+//  WordleAI
 //
 //  Created by Yu-Sung Loyi Hsu on 2022/1/28.
 //
